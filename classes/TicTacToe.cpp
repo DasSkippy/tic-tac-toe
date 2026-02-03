@@ -155,26 +155,6 @@ Player* TicTacToe::ownerAt(int index ) const
 
 Player* TicTacToe::checkForWinner()
 {
-    int winningTriples[8][3] = {
-        {0, 1, 2},
-        {3, 4, 5},
-        {6, 7, 8},
-        {0, 3, 6},
-        {1, 4, 7},
-        {2, 5, 8},
-        {0, 4, 8},
-        {2, 4, 6}
-    };
-    for (auto &triple : winningTriples) {
-        std::cout << "Checking triple: " << triple[0] << ", " << triple[1] << ", " << triple[2] << std::endl;
-        Player* p1 = ownerAt(triple[0]);
-        Player* p2 = ownerAt(triple[1]);
-        Player* p3 = ownerAt(triple[2]);
-        if (p1 != nullptr && p1 == p2 && p2 == p3) {
-            std::cout << "winner" << std::endl;
-            return p1; // found a winner
-        }
-    }
     // check all the winning triples
     // if any of them have the same owner return that player
     // winning triples are:
@@ -192,6 +172,22 @@ Player* TicTacToe::checkForWinner()
     // if you find a winning triple, return the player who owns that triple
     // otherwise return nullptr
 
+    std::vector<std::vector<int>> winningCombos = {
+        {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, // rows
+        {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, // columns
+        {0, 4, 8}, {2, 4, 6}             // diagonals
+    };
+
+    // for (const auto& combo : winningCombos) {
+    //     Player* p1 = ownerAt(combo[0]);
+    //     Player* p2 = ownerAt(combo[1]);
+    //     Player* p3 = ownerAt(combo[2]);
+
+    //     if (p1 && p1 == p2 && p2 == p3) { 
+    //         return p1; // Return the winning player
+    //     }
+    // }
+
     // Hint: Consider using an array to store the winning combinations
     // to avoid repetitive code
     return nullptr;
@@ -199,15 +195,15 @@ Player* TicTacToe::checkForWinner()
 
 bool TicTacToe::checkForDraw()
 {
-    // for (int i = 0; i < 9; i++) {
-    //     if (ownerAt(i) == nullptr) {
-    //         return false; // found an empty square, not a draw
-    //     }
-    // }
+    for (int i = 0; i < 9; i++) {
+        if (ownerAt(i) == nullptr) {
+            return false; // found an empty square, not a draw
+        }
+    }
     // is the board full with no winner?
     // if any square is empty, return false
     // otherwise return true
-    return false;
+    return true;
 }
 
 //
