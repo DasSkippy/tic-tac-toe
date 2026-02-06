@@ -1,8 +1,9 @@
 Sean Frederico
 CMPM 123
 
-I coded methods that allow players to place pices in selected slots
-Code that detects wins/draws
-As well as code that can write to a string and write from a string to the board
+For the ai i coded a negamax function to find the best move for the ai
+The updateAI method makes the best found move
+I coded aiBoardEval to see if there are any winners on the board
+I coded aiTestForTerminal to see if there are any draws 
 
 I worked on this project using windows 11
